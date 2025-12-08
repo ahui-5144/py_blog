@@ -2,8 +2,8 @@ from fastapi import APIRouter, HTTPException, Query
 from sqlalchemy import select, func
 
 from core.database import get_db
-from app.models.hero import Hero
-from app.schemas.hero_schemas import HeroCreate, HeroUpdate, Hero as HeroVO, HeroList
+from models.hero import Hero
+from schemas.hero_schemas import HeroCreate, HeroUpdate, Hero as HeroVO, HeroList
 
 router = APIRouter(
     prefix="/heroes",

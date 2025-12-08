@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from core.redis_client import get_redis
+from core.redis import get_redis
 
 router = APIRouter(prefix="/redis", tags=["redis"])
 

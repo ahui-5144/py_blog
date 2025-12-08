@@ -1,13 +1,10 @@
 from contextlib import asynccontextmanager
 
-from fastapi import Depends, FastAPI
+from fastapi import FastAPI
 
+from api.v1.endpoints import redis_example, users, heroes, items
 from core.database import create_tables, shutdown_db
-from core.dependencies import get_token_header
-from internal import admin
-from api.api_v1.endpoints import redis_example, users, heroes, items
-from core.redis_client import init_redis, close_redis
-
+from core.redis import init_redis, close_redis
 
 
 # ------------- 创建生命周期
@@ -39,13 +36,6 @@ app.include_router(users.router)
 app.include_router(items.router)
 app.include_router(heroes.router)
 app.include_router(redis_example.router)
-app.include_router(
-    admin.router,
-    prefix="/admin",
-    tags=["admin"],
-    dependencies=[Depends(get_token_header)],
-    responses={418: {"description": "I'm a teapot"}},
-)
 
 @app.get("/")
 async def root():
