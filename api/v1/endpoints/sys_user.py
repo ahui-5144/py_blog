@@ -7,7 +7,8 @@ from fastapi.security import OAuth2PasswordRequestForm
 from schemas.base import APIRes
 from schemas.sys_user_schemas import Token, User, UserCreate
 from services.sys_user_service import SysUserService, get_current_active_user
-from utils.auth import ACCESS_TOKEN_EXPIRE_MINUTES, create_access_token
+from utils.auth import create_access_token
+from core.config import config
 
 router = APIRouter(
     prefix="/api/v1/users",
@@ -41,7 +42,7 @@ async def login_for_access_token(
         )
 
     # 生成访问令牌
-    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token_expires = timedelta(minutes=config.ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
         data={"sub": user.username}, expires_delta=access_token_expires
     )
