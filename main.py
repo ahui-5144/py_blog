@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 import uvicorn
 from fastapi import FastAPI
 
-from api.v1.endpoints import redis_example, sys_user, heroes, items
+from api.v1.endpoints import redis_example, sys_user
 from core.config import config
 from core.cors import setup_cors
 from core.database import create_tables, shutdown_db
@@ -44,8 +44,6 @@ app = FastAPI(
 setup_cors(app)
 
 app.include_router(sys_user.router)
-app.include_router(items.router)
-app.include_router(heroes.router)
 app.include_router(redis_example.router)
 
 if __name__ == "__main__":

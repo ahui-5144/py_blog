@@ -44,9 +44,9 @@ def decode_token(token: str):
     )
     try:
         payload = jwt.decode(token, config.SECRET_KEY, algorithms=[config.ALGORITHM])
-        username: str = payload.get("sub")
-        if username is None:
+        user_id: str = payload.get("sub")
+        if user_id is None:
             raise credentials_exception
-        return username
+        return int(user_id)
     except InvalidTokenError:
         raise credentials_exception

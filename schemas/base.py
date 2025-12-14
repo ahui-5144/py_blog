@@ -11,11 +11,11 @@ class APIRes(BaseModel, Generic[T]):
     通用API返回值格式
     
     Attributes:
-        code: 错误码，0表示成功，非0表示失败
+        code: 错误码，200表示成功，非200表示失败
         message: 响应消息
         data: 响应数据，可选
     """
-    code: int = 0
+    code: int = 200
     message: str = "Success"
     data: Optional[T] = None
 
