@@ -1,5 +1,8 @@
+from dotenv import load_dotenv
 import os
 from typing import Any, Dict, Optional
+
+load_dotenv()  # 默认加载项目根目录下的 .env 文件
 
 class Config:
     """应用配置类"""

@@ -7,7 +7,9 @@ from models.sys_user import SysUser
 from schemas.sys_user_schemas import UserVo, UserCreate
 from utils.auth import decode_token, oauth2_scheme
 
-
+'''
+真正的鉴权逻辑--解析 Token --> 查询数据库 --> 返回用户
+'''
 async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
     """
     从JWT中获取当前用户

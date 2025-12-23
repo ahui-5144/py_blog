@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 import uvicorn
 from fastapi import FastAPI
 
-from api.v1.endpoints import redis_example, sys_user
+from api.v1.endpoints import redis_example, sys_user, article
 from core.config import config
 from core.cors import setup_cors
 from core.database import create_tables, shutdown_db
@@ -45,6 +45,8 @@ setup_cors(app)
 
 app.include_router(sys_user.router)
 app.include_router(redis_example.router)
+
+app.include_router(article.router)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=28000)

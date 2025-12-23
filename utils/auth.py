@@ -11,6 +11,9 @@ from core.config import config
 
 password_hash = PasswordHash.recommended()
 
+'''
+只是告诉 Swagger "这个接口需要 Token"
+'''
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/users/token")
 
 # 判断输入密码和存储的密码哈希值是否一致
